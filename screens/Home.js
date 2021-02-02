@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Feather from "react-native-vector-icons/Feather";
 
 import sample from '../assets/sample';
-// import data from "../assets/data";
+import data from "../assets/data";
 
 
 
@@ -12,8 +12,8 @@ const { height, width } = Dimensions.get("window");
 
 const Home = ({navigation}) => {
   const [search, setSearch] = useState('');
-  const [filteredDataSource, setFilteredDataSource] = useState(sample);
-  const [masterDataSource, setMasterDataSource] = useState(sample);
+  const [filteredDataSource, setFilteredDataSource] = useState(data);
+  const [masterDataSource, setMasterDataSource] = useState(data);
 
 
   const searchFilterFunction = (text) => {
