@@ -1,6 +1,7 @@
 import React, {useRef} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView, Image} from 'react-native';
 import Feather from "react-native-vector-icons/Feather";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import LinearGradient from 'react-native-linear-gradient';
 import { captureRef } from "react-native-view-shot";
 import Share from 'react-native-share';
@@ -52,10 +53,10 @@ const Details = ({ route, navigation: { goBack } }) => {
                 <LinearGradient colors={['#FCEDCD', '#fff']} >
                     <View style={styles.header}>
                         <TouchableOpacity style={styles.backButton} onPress={() => goBack()} >
-                            <Feather name="chevron-left" size={24} />
+                            <Feather name="chevron-left" size={30} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={shareToFriend} style={{paddingRight:8}}>
-                            <Feather name="user-plus" size={24} />
+                            <Feather name="user-plus" size={30} />
                         </TouchableOpacity>
                     </View>
                 </LinearGradient>
@@ -72,7 +73,7 @@ const Details = ({ route, navigation: { goBack } }) => {
                     <View style={{ height: 0.5, width: '100%', backgroundColor: '#C8C8C8', }} />
                     <View style={styles.shareContainer}>
                         <TouchableOpacity style={styles.actionButtons} onPress={shareQuoteImage}>
-                            <Feather name="share-2" size={24} />
+                            <MaterialIcons name="share" size={25} />
                             <Text>Share</Text>
                         </TouchableOpacity >
                     </View>
