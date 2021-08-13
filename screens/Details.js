@@ -89,12 +89,24 @@ const Details = ({route, navigation: {goBack}}) => {
             marginTop: 10,
             marginBottom: 10,
             borderWidth: 2.5,
+            overflow: 'hidden',
           },
           {
-            backgroundColor: props.backgroundColor,
             borderColor: selectedColorOutline,
           },
-        ]}></TouchableOpacity>
+        ]}>
+        <Image
+          source={require('../assets/img/colorpicker.jpeg')}
+          style={{
+            width: 50,
+            height: 50,
+            resizeMode: 'stretch',
+            position: 'absolute',
+            overflow: 'hidden',
+            top: 0,
+          }}
+        />
+      </TouchableOpacity>
     );
   };
 
@@ -109,34 +121,46 @@ const Details = ({route, navigation: {goBack}}) => {
 
   return (
     <View style={styles.container}>
+      {/* modal view */}
       <View>
-        <Button title="Show modal" onPress={toggleModal} />
-
         <Modal isVisible={isModalVisible}>
           <View style={{flex: 1, backgroundColor: 'white'}}>
             <TouchableOpacity style={{padding: 10}} onPress={toggleModal}>
               <Feather name="x-circle" size={30} />
             </TouchableOpacity>
-            <Text>Pick a lovely colour...</Text>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{fontSize: 18}}>Pick a lovely colour...</Text>
+            </View>
             <ColorPicker
-              onColorSelected={
-                (color) => setSelectedColor(color)
-                //   alert(`Color selected: ${color}`)
-              }
+              hideSliders={true}
+              onColorSelected={(color) => {
+                setSelectedColor(color);
+                setModalVisible(!isModalVisible);
+                //   alert(`Color selected: ${color}`);
+              }}
               style={{flex: 1}}
             />
           </View>
         </Modal>
       </View>
-
+      {/* Header */}
       <LinearGradient colors={['#FCEDCD', '#fff']}>
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton} onPress={() => goBack()}>
             <Feather name="chevron-left" size={30} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={shareToFriend} style={{paddingRight: 8}}>
-            <Feather name="share" size={25} />
-          </TouchableOpacity>
+          <View style={{flexDirection: 'row', paddingHorizontal: 0}}>
+            <TouchableOpacity
+              onPress={shareToFriend}
+              style={{paddingRight: 20}}>
+              <Feather name="type" size={25} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={shareToFriend}
+              style={{paddingRight: 10}}>
+              <Feather name="share" size={25} />
+            </TouchableOpacity>
+          </View>
         </View>
       </LinearGradient>
 
@@ -154,7 +178,9 @@ const Details = ({route, navigation: {goBack}}) => {
               top: 0,
             }}
           /> */}
-          <Text>{JSON.stringify(QUOTE)} </Text>
+          <Text style={{textAlign: 'center', fontSize: 23, fontWeight: 'bold'}}>
+            {JSON.stringify(QUOTE)}{' '}
+          </Text>
           <Text> {AUTHOR}</Text>
           <Text
             style={{
@@ -204,9 +230,7 @@ const Details = ({route, navigation: {goBack}}) => {
             backgroundColor="#dff9fb"
           />
           <ColorPickerComponentSelector
-            onPress={() => {
-              setSelectedColor('#dff9fb');
-            }}
+            onPress={toggleModal}
             backgroundColor="#dff9fb"
           />
         </View>
@@ -255,7 +279,7 @@ const styles = StyleSheet.create({
   colorsContainer: {
     flexDirection: 'row',
     // paddingHorizontal: 0,
-    // justifyContent: 'space-around',
+    justifyContent: 'space-around',
   },
   shareContainer: {
     marginTop: 10,
