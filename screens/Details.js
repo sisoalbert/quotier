@@ -147,7 +147,7 @@ const Details = ({route, navigation: {goBack}}) => {
   const CustomPicker = ({label, data, currentIndex, onSelected}) => {
     return (
       <>
-        <Text style={styles.title}>{label}</Text>
+        <Text style={[styles.title, {marginBottom: 10}]}>{label}</Text>
         <View style={styles.wrapperHorizontal}>
           <FlatList
             bounces
@@ -332,15 +332,7 @@ const Details = ({route, navigation: {goBack}}) => {
                 paddingHorizontal: 10,
               }}></Text>
             <View style={{}}>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                  paddingHorizontal: 10,
-                }}>
-                Font
-              </Text>
-              <View>
+              <View style={{paddingHorizontal: 10}}>
                 <CustomPicker
                   label="Font Style"
                   data={fontStyles}
@@ -349,11 +341,7 @@ const Details = ({route, navigation: {goBack}}) => {
                 />
               </View>
             </View>
-            <Text
-              style={{fontSize: 16, fontWeight: 'bold', paddingHorizontal: 10}}>
-              Font Size
-            </Text>
-            <View style={{marginBottom: 20}}>
+            <View style={{paddingHorizontal: 10}}>
               <CustomSlider
                 label="Font Size"
                 value={fontSize}
