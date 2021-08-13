@@ -1,12 +1,19 @@
-import * as React from 'react';
+import  React , { useEffect } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home';
 import Details from './screens/Details';
 
+import SplashScreen from 'react-native-splash-screen'
+
 const Stack = createStackNavigator();
 
 function App() {
+
+  useEffect(()=>{
+    SplashScreen.hide();
+    });
+
   return (
     <NavigationContainer>
       <Stack.Navigator
