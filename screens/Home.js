@@ -93,6 +93,12 @@ const Home = ({navigation}) => {
               height: 43,
             }}
           />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Favourates');
+            }}>
+            <Feather name="heart" size={30} />
+          </TouchableOpacity>
           {/* <Text style={styles.headerText}>Quotier</Text> */}
         </View>
         {/* search */}
@@ -129,6 +135,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 20,
     marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   headerText: {
     fontSize: 20,
