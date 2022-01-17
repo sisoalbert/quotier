@@ -4,7 +4,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Favourates = ({navigation: {goBack}}) => {
+const Favourites = ({navigation: {goBack}}) => {
   return (
     <View>
       {/* Header */}
@@ -14,7 +14,7 @@ const Favourates = ({navigation: {goBack}}) => {
             <Feather name="chevron-left" size={30} />
           </TouchableOpacity>
           <View>
-            <Text style={{fontSize: 18}}>Favourates</Text>
+            <Text style={{fontSize: 18}}>Favourites</Text>
           </View>
           <View>
             <Text></Text>
@@ -25,7 +25,7 @@ const Favourates = ({navigation: {goBack}}) => {
   );
 };
 
-export default Favourates;
+export default Favourites;
 
 const styles = StyleSheet.create({
   header: {
