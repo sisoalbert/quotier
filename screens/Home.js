@@ -95,7 +95,7 @@ const Home = ({navigation}) => {
           />
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Favourates');
+              navigation.navigate('Favourites');
             }}>
             <Feather name="heart" size={30} />
           </TouchableOpacity>

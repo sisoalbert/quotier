@@ -15,6 +15,7 @@
     "@react-native-community/slider": "^3.0.3",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
+    "axios": "^0.21.4",
     "lodash.filter": "^4.6.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
@@ -28,7 +29,9 @@
     "react-native-share": "^5.1.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^8.0.0",
-    "react-native-view-shot": "^3.1.2"
+    "react-native-view-shot": "^3.1.2",
+    "react-redux": "^7.2.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
