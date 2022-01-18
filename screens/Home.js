@@ -15,6 +15,9 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import sample from '../assets/sample';
 import data from '../assets/data';
+//Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {addFavorite, removeFavorite} from '../redux/actions';
 
 const {height, width} = Dimensions.get('window');
 
@@ -22,6 +25,27 @@ const Home = ({navigation}) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState(data);
   const [masterDataSource, setMasterDataSource] = useState(data);
+
+  //REDUX
+  const {favorites} = useSelector((state) => state.quotesReducer);
+  const dispatch = useDispatch();
+
+  const addToFavorites = (quote) => dispatch(addFavorite(quote));
+  const removeFromFavorites = (quote) => dispatch(removeFavorite(quote));
+
+  const handleAddFavorite = (quote) => {
+    addToFavorites(quote);
+  };
+  const handleRemoveFavorite = (quote) => {
+    removeFromFavorites(quote);
+  };
+
+  const exists = (quote) => {
+    if (favorites.filter((item) => item.id === quote.id).length > 0) {
+      return true;
+    }
+    return false;
+  };
 
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
@@ -53,22 +77,7 @@ const Home = ({navigation}) => {
 
   const listRender = ({item}) => {
     return (
-      <TouchableOpacity
-        style={styles.item}
-        onPress={() => {
-          navigation.navigate('Details', {
-            QUOTE: item.QUOTE,
-            AUTHOR: item.AUTHOR,
-          });
-        }}>
-        <View style={styles.imageIcon}>
-          <Image
-            source={require('../assets/icons/quotes.png')}
-            style={{width: 25, height: 25, resizeMode: 'stretch'}}
-          />
-        </View>
-        <Text style={styles.title}>{item.AUTHOR}</Text>
-        <Text>{JSON.stringify(item.QUOTE)}</Text>
+      <View>
         <View
           style={{
             height: 0.5,
@@ -77,7 +86,38 @@ const Home = ({navigation}) => {
             marginTop: 10,
           }}
         />
-      </TouchableOpacity>
+        <View style={styles.item}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Details', {
+                QUOTE: item.QUOTE,
+                AUTHOR: item.AUTHOR,
+              });
+            }}
+            style={{width: '90%'}}>
+            <Text style={styles.title}>{item.AUTHOR}</Text>
+            <Text>{JSON.stringify(item.QUOTE)}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              exists(item)
+                ? handleRemoveFavorite(item)
+                : handleAddFavorite(item)
+            }
+            style={[styles.imageIcon, {}]}>
+            <View>
+              <Image
+                source={
+                  exists(item)
+                    ? require('../assets/icons/quotes-dark.png')
+                    : require('../assets/icons/quotes.png')
+                }
+                style={{width: 25, height: 25, resizeMode: 'stretch'}}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   };
 
@@ -164,10 +204,14 @@ const styles = StyleSheet.create({
 
     marginVertical: 10,
     marginHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   imageIcon: {
-    position: 'absolute',
-    right: 0,
+    // position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    left: 0,
   },
   title: {
     fontSize: 20,

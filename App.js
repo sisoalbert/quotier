@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import Home from './screens/Home';
-import Details from './screens/Details';
-import Favourates from './screens/Favourates';
+import RootNavigator from './navigation/RootNavigator';
 
 import SplashScreen from 'react-native-splash-screen';
 
-const Stack = createStackNavigator();
+//Redux
+import {Provider} from 'react-redux';
+import {store, appPersist} from './redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 function App() {
   useEffect(() => {
@@ -15,16 +14,11 @@ function App() {
   });
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={Details} />
-        <Stack.Screen name="Favourates" component={Favourates} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={appPersist}>
+        <RootNavigator />
+      </PersistGate>
+    </Provider>
   );
 }
 
