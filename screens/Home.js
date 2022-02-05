@@ -47,6 +47,7 @@ const Home = ({navigation}) => {
     return false;
   };
 
+  //SEARCH
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
     if (text) {

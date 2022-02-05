@@ -33,7 +33,7 @@ const Details = ({route, navigation: {goBack}}) => {
 
   const viewRef = useRef();
 
-  //share the quote
+  //share the quote - screenshot
   const shareQuoteImage = async () => {
     try {
       const uri = await captureRef(viewRef, {
